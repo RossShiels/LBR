@@ -1,0 +1,15 @@
+﻿@model PostViewModel
+
+@Html.HiddenFor(model=> model.BlogPostId)
+
+<div class="post">
+    <div class="row">
+        <strong>@Model.Title</strong>
+    </div>
+    <div class="row">
+        <small>@Model.PublishedOn.ToString("dd MMM yyyy")</small>
+    </div>
+    <div class="row">
+        <small>Comments: @Model.Comments.Count</small>
+</div>
+</div>

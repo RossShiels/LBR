@@ -1,0 +1,37 @@
+﻿@model BlogViewModel 
+
+<div id="content">
+
+    @if (Model.BlogPosts.Count > 0)
+    {
+        foreach (var post in Model.BlogPosts)
+        {
+            <div class="container" id="BlogLink@(post.BlogPostId)" style="border: 1px solid black;">
+                @Html.Partial("PostTemplate", post)
+            </div>
+        }
+    }
+    else
+    {
+        <p>No posts</p>
+    }
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+        $("[id*=BlogLink]").hover(function () {
+            $(this).css("background-color", "pink");
+        }, function () {
+            $(this).css("background-color", "white");
+        });
+
+        $("[id*=BlogLink]").click(function () {
+            var bpId = $(this).attr("id").replace('BlogLink', '');           
+            var url = "/Home/BlogDetails?BlogPostId=" + bpId;
+            window.location.href = url; 
+        });
+    });
+</script>
+

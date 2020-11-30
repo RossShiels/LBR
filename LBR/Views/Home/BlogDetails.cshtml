@@ -1,0 +1,36 @@
+﻿@model PostViewModel
+
+<div id="content">
+    <div class="row">
+        <p><strong>@Model.Title</strong></p>
+    </div>
+    <div class="row">
+        <p>@Html.Raw(Model.Body)</p>
+    </div>
+    <div class="row">
+        <p><small>Published: @Model.PublishedOn.ToString("dd MMM yyyy")</small></p>
+    </div>
+    <div class="row">
+        <p><small>@Html.ActionLink("Back", "Index")</small></p>
+    </div>
+    <div class="row">
+        <strong>Comments</strong>
+    </div>
+
+    @if (Model.Comments.Count > 0)
+    {
+        foreach (var comment in Model.Comments)
+        {
+            <div class="row">
+                <small>@comment.Comment</small>     <small>-@comment.CommentedOn.Value.ToString("dd MMM yyyy")</small>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="row">
+            <small>No Comments</small>
+        </div>
+    }
+
+</div>
